@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Hisabh</string>
+    <string name="notification_channel_name">Transaction Alerts</string>
+    <string name="notification_channel_desc">Notifications for auto-tracked HDFC bank expenses</string>
+    <string name="file_provider_authority">com.hisabh.app.fileprovider</string>
+</resources>
+

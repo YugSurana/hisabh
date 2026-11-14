@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Premium Rupee Logo Mark for Hisabh in Warm Off-White / Cream (#FAF8F5) -->
+    <!-- Top Horizontal Bar -->
+    <path
+        android:fillColor="#FAF8F5"
+        android:pathData="M34,31h40v5.5h-40z" />
+    <!-- Second Horizontal Bar -->
+    <path
+        android:fillColor="#FAF8F5"
+        android:pathData="M34,41h26v5.5h-26z" />
+    <!-- Rupee Upper Loop, Stem & Lower Diagonal Leg -->
+    <path
+        android:fillColor="#FAF8F5"
+        android:pathData="M34,31h8v10h18c7.5,0 13.5,4.5 13.5,11.5c0,7 -6,11.5 -13.5,11.5h-7.5l19.5,23h-9.5l-19,-23v-5.5h16.5c4.5,0 8,-2.5 8,-6c0,-3.5 -3.5,-6 -8,-6h-18.5v35h-8z" />
+</vector>

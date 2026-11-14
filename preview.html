@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hisabh — Interactive App Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@400;500&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .serif-title { font-family: 'Playfair Display', serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-[#121815] text-[#1E2E25] min-h-screen p-4 flex flex-col items-center justify-center">
+
+  <!-- Interactive Screen Switcher Bar -->
+  <div class="mb-4 flex items-center gap-1.5 bg-[#1C2620]/90 backdrop-blur p-1.5 rounded-2xl border border-[#2B3B32] text-xs shadow-xl">
+    <button onclick="setView('dashboard')" id="btn-dashboard" class="px-4 py-1.5 rounded-xl font-medium transition-all bg-[#2D5841] text-[#F7F5F0] shadow-sm">
+      1. Dashboard Screen
+    </button>
+    <button onclick="setView('edit')" id="btn-edit" class="px-4 py-1.5 rounded-xl font-medium transition-all text-[#8E9F94] hover:text-[#F7F5F0]">
+      2. Edit Transaction Sheet
+    </button>
+    <button onclick="setView('add')" id="btn-add" class="px-4 py-1.5 rounded-xl font-medium transition-all text-[#8E9F94] hover:text-[#F7F5F0]">
+      3. Add Cash (+ Sheet)
+    </button>
+    <button onclick="setView('export')" id="btn-export" class="px-4 py-1.5 rounded-xl font-medium transition-all text-[#8E9F94] hover:text-[#F7F5F0]">
+      4. Export PDF / CSV
+    </button>
+  </div>
+
+  <!-- Android Phone Mockup Frame -->
+  <div class="relative w-[385px] h-[790px] bg-[#1B221D] rounded-[50px] p-3 shadow-2xl border-4 border-[#2D3930] ring-1 ring-white/5 flex flex-col overflow-hidden">
+    
+    <!-- Phone Top Camera Punch-hole -->
+    <div class="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-4 bg-black rounded-full flex items-center justify-center z-50">
+      <div class="w-2.5 h-2.5 bg-[#151D18] rounded-full border border-[#2B3B32]"></div>
+    </div>
+
+    <!-- Phone Screen Container (Off-White / Cream Base #FAF8F5) -->
+    <div class="w-full h-full bg-[#FAF8F5] rounded-[40px] flex flex-col overflow-hidden relative border border-[#E9E4DA]">
+      
+      <!-- Android Status Bar -->
+      <div class="pt-3 px-6 pb-1.5 flex justify-between items-center text-[11px] font-medium text-[#6B7C72] select-none z-20">
+        <span class="mono font-semibold text-[#1B3627]">11:45</span>
+        <div class="flex items-center gap-2 text-[10px]">
+          <span>5G</span>
+          <span>● 98%</span>
+        </div>
+      </div>
+
+      <!-- VIEW 1: DASHBOARD -->
+      <div id="view-dashboard" class="flex-1 flex flex-col overflow-y-auto px-4 pb-16 space-y-3.5">
+        
+        <!-- Minimal Top Bar -->
+        <div class="flex items-center justify-between pt-1">
+          <div>
+            <span class="text-[10px] tracking-widest uppercase font-semibold text-[#5A6E62]">Personal Expense</span>
+            <h1 class="text-xl font-bold tracking-tight text-[#163827] serif-title">Hisabh</h1>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="triggerScanSimulation()" class="w-8 h-8 rounded-full bg-[#EFECE4] hover:bg-[#E5E0D5] flex items-center justify-center text-[#163827] text-xs transition-colors" title="Scan Past SMS">
+              📥
+            </button>
+            <button onclick="setView('export')" class="w-8 h-8 rounded-full bg-[#163827] text-[#FAF8F5] flex items-center justify-center text-xs shadow-sm" title="Export">
+              📤
+            </button>
+          </div>
+        </div>
+
+        <!-- Month Switcher (Understated Minimal Bar) -->
+        <div class="flex items-center justify-between bg-[#F2EFE8] border border-[#E5DFD3] rounded-2xl p-1 px-3">
+          <button class="w-6 h-6 flex items-center justify-center text-[#5A6E62] hover:text-[#163827] text-xs">‹</button>
+          <span class="text-xs font-semibold tracking-wide text-[#163827]">November 2026</span>
+          <button class="w-6 h-6 flex items-center justify-center text-[#5A6E62] hover:text-[#163827] text-xs">›</button>
+        </div>
+
+        <!-- Hero Card: Net Balance & High-Contrast Minimal Metrics -->
+        <div class="bg-[#163827] text-[#FAF8F5] rounded-3xl p-4 shadow-sm relative overflow-hidden">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-[10px] font-medium tracking-wider text-[#A5C0B1] uppercase">Net Savings</p>
+              <h2 class="text-2xl font-bold tracking-tight text-[#FAF8F5] mt-0.5">₹40,150<span class="text-sm font-normal text-[#A5C0B1]">.00</span></h2>
+            </div>
+            <span class="text-[9px] px-2 py-0.5 rounded-full bg-[#244C36] text-[#C1DEC9] font-medium border border-[#325E45]">
+              Active HDFC Sync
+            </span>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-[#244C36] grid grid-cols-2 gap-3">
+            <div>
+              <p class="text-[9px] text-[#A5C0B1] uppercase tracking-wider">Total Spent</p>
+              <p class="text-sm font-bold text-[#FAF8F5]">₹24,850.00</p>
+            </div>
+            <div>
+              <p class="text-[9px] text-[#A5C0B1] uppercase tracking-wider">Total Received</p>
+              <p class="text-sm font-bold text-[#8CE3B1]">₹65,000.00</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Minimal Category Breakdown Bar -->
+        <div class="bg-white border border-[#EAE5DC] rounded-2xl p-3 space-y-2.5">
+          <div class="flex items-center justify-between text-xs">
+            <span class="font-bold text-[#163827]">Monthly Spend by Category</span>
+            <span class="text-[10px] text-[#6B7C72]">₹24,850 Total</span>
+          </div>
+
+          <!-- Elegant thin segmented bar -->
+          <div class="w-full h-2 rounded-full overflow-hidden flex gap-0.5 bg-[#EFECE4]">
+            <div class="h-full bg-[#163827] rounded-l-full" style="width: 42%" title="Food & Dining 42%"></div>
+            <div class="h-full bg-[#2F6146]" style="width: 26%" title="Groceries 26%"></div>
+            <div class="h-full bg-[#628A73]" style="width: 18%" title="Travel 18%"></div>
+            <div class="h-full bg-[#A3B8AC] rounded-r-full" style="width: 14%" title="Shopping 14%"></div>
+          </div>
+
+          <!-- Minimal Category Legend -->
+          <div class="grid grid-cols-2 gap-2 pt-1 text-[11px]">
+            <div class="flex items-center justify-between">
+              <span class="flex items-center gap-1.5 text-[#3D4D43]">
+                <span class="w-2 h-2 rounded-full bg-[#163827]"></span> Food & Dining
+              </span>
+              <span class="font-semibold text-[#163827]">42%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="flex items-center gap-1.5 text-[#3D4D43]">
+                <span class="w-2 h-2 rounded-full bg-[#2F6146]"></span> Groceries
+              </span>
+              <span class="font-semibold text-[#163827]">26%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="flex items-center gap-1.5 text-[#3D4D43]">
+                <span class="w-2 h-2 rounded-full bg-[#628A73]"></span> Travel & Fuel
+              </span>
+              <span class="font-semibold text-[#163827]">18%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="flex items-center gap-1.5 text-[#3D4D43]">
+                <span class="w-2 h-2 rounded-full bg-[#A3B8AC]"></span> Shopping
+              </span>
+              <span class="font-semibold text-[#163827]">14%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section Header -->
+        <div class="flex items-center justify-between pt-1">
+          <span class="text-[11px] font-bold tracking-wider text-[#5A6E62] uppercase">Today, 13 Nov</span>
+          <span class="text-[10px] text-[#86998E]">2 items</span>
+        </div>
+
+        <!-- Transaction Card 1: Zomato -->
+        <div onclick="setView('edit')" class="cursor-pointer bg-white hover:bg-[#F7F4EE] border border-[#EAE5DC] rounded-2xl p-3 flex items-center justify-between transition-colors">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-[#F0EDE5] border border-[#E2DDD3] flex items-center justify-center text-[#163827] font-semibold text-xs">
+              🍽️
+            </div>
+            <div>
+              <p class="text-xs font-bold text-[#163827]">Zomato</p>
+              <div class="flex items-center gap-1.5 text-[10px] text-[#6B7C72]">
+                <span class="px-1.5 py-0.2 rounded-md bg-[#F2EFE8] text-[#163827] font-medium">Food & Dining</span>
+                <span>• 12:45 PM</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-bold text-[#B43B33]">-₹340.00</span>
+            <p class="text-[9px] mono text-[#8E9F94]">Ref 631894021</p>
+          </div>
+        </div>
+
+        <!-- Transaction Card 2: Chai Tapri -->
+        <div onclick="setView('edit')" class="cursor-pointer bg-white hover:bg-[#F7F4EE] border border-[#EAE5DC] rounded-2xl p-3 flex items-center justify-between transition-colors">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-[#F0EDE5] border border-[#E2DDD3] flex items-center justify-center text-[#163827] font-semibold text-xs">
+              ☕
+            </div>
+            <div>
+              <p class="text-xs font-bold text-[#163827]">CHAI TAPRI</p>
+              <div class="flex items-center gap-1.5 text-[10px] text-[#6B7C72]">
+                <span class="px-1.5 py-0.2 rounded-md bg-[#F2EFE8] text-[#163827] font-medium">Food & Dining</span>
+                <span>• 10:15 AM</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-bold text-[#B43B33]">-₹150.00</span>
+            <p class="text-[9px] mono text-[#8E9F94]">Ref 631894022</p>
+          </div>
+        </div>
+
+        <!-- Section Header Yesterday -->
+        <div class="flex items-center justify-between pt-1">
+          <span class="text-[11px] font-bold tracking-wider text-[#5A6E62] uppercase">Yesterday, 12 Nov</span>
+          <span class="text-[10px] text-[#86998E]">2 items</span>
+        </div>
+
+        <!-- Transaction Card 3: Credit -->
+        <div class="bg-white border border-[#EAE5DC] rounded-2xl p-3 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-[#EAF2ED] border border-[#CDE1D4] flex items-center justify-center text-[#163827] font-semibold text-xs">
+              💰
+            </div>
+            <div>
+              <p class="text-xs font-bold text-[#163827]">Client Payment / Invoice</p>
+              <div class="flex items-center gap-1.5 text-[10px] text-[#6B7C72]">
+                <span class="px-1.5 py-0.2 rounded-md bg-[#EAF2ED] text-[#163827] font-medium">Received</span>
+                <span>• 04:30 PM</span>
+              </div>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-bold text-[#1E6845]">+₹65,000.00</span>
+            <p class="text-[9px] mono text-[#8E9F94]">UPI Ref 631894029</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VIEW 2: EDIT BOTTOM SHEET (Minimal Cream & Deep Green) -->
+      <div id="view-edit" class="hidden flex-1 flex flex-col bg-[#FAF8F5] p-4 space-y-3.5 overflow-y-auto">
+        <div class="w-10 h-1 bg-[#D8D2C5] rounded-full mx-auto my-1"></div>
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-sm font-bold text-[#163827] serif-title">Edit Transaction</h2>
+            <p class="text-[10px] text-[#6B7C72]">Tag category or customize merchant</p>
+          </div>
+          <button onclick="setView('dashboard')" class="w-6 h-6 rounded-full bg-[#EFECE4] text-[#163827] flex items-center justify-center text-xs">✕</button>
+        </div>
+
+        <div class="bg-white p-3 rounded-2xl border border-[#EAE5DC] space-y-1">
+          <span class="text-[9px] text-[#8E9F94] uppercase tracking-wider font-semibold">Raw SMS Source</span>
+          <p class="text-xs text-[#163827] mono">zomato@okaxis</p>
+          <span class="text-[9px] text-[#8E9F94] uppercase tracking-wider font-semibold block pt-1">Amount</span>
+          <p class="text-lg font-bold text-[#B43B33]">₹340.00</p>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-[#163827]">Display Name</label>
+          <input type="text" value="Zomato" class="w-full bg-white border border-[#DDD7CC] rounded-xl px-3 py-2 text-xs text-[#163827] focus:outline-none focus:border-[#163827]">
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-[#163827]">Category</label>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium bg-[#163827] text-[#FAF8F5]">🍽️ Food & Dining</span>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium bg-[#EFECE4] text-[#3D4D43]">🛒 Groceries</span>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium bg-[#EFECE4] text-[#3D4D43]">🚗 Travel & Fuel</span>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium bg-[#EFECE4] text-[#3D4D43]">⚡ Bills</span>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium bg-[#EFECE4] text-[#3D4D43]">🛍️ Shopping</span>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-[#163827]">Personal Note</label>
+          <input type="text" placeholder="e.g. Dinner with team" value="Dinner with friends" class="w-full bg-white border border-[#DDD7CC] rounded-xl px-3 py-2 text-xs text-[#163827] focus:outline-none focus:border-[#163827]">
+        </div>
+
+        <!-- Rule Checkbox -->
+        <div class="flex items-center gap-2 bg-[#F2EFE8] border border-[#E5DFD3] p-2.5 rounded-xl">
+          <input type="checkbox" id="rule-check" checked class="w-3.5 h-3.5 rounded accent-[#163827]">
+          <label for="rule-check" class="text-[10px] text-[#3D4D43]">
+            Always apply category to future payments for <span class="font-bold text-[#163827]">zomato@okaxis</span>
+          </label>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-2 pt-2">
+          <button onclick="setView('dashboard')" class="flex-1 py-2.5 rounded-xl bg-[#F0EDE5] text-[#B43B33] font-semibold text-xs hover:bg-[#EAE4D8]">
+            Delete
+          </button>
+          <button onclick="setView('dashboard')" class="flex-2 py-2.5 rounded-xl bg-[#163827] text-[#FAF8F5] font-semibold text-xs hover:bg-[#112D1F] shadow-sm">
+            Save Changes
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW 3: ADD CASH EXPENSE SHEET -->
+      <div id="view-add" class="hidden flex-1 flex flex-col bg-[#FAF8F5] p-4 space-y-3.5 overflow-y-auto">
+        <div class="w-10 h-1 bg-[#D8D2C5] rounded-full mx-auto my-1"></div>
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-bold text-[#163827] serif-title">Add Cash Transaction</h2>
+          <button onclick="setView('dashboard')" class="w-6 h-6 rounded-full bg-[#EFECE4] text-[#163827] flex items-center justify-center text-xs">✕</button>
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-[#163827]">Amount (₹)</label>
+          <input type="number" placeholder="0.00" class="w-full bg-white border border-[#DDD7CC] rounded-xl px-3 py-2 text-xs text-[#163827] focus:outline-none focus:border-[#163827]">
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-[#163827]">Spent At / Paid To</label>
+          <input type="text" placeholder="e.g. Chai Stall, Auto, Metro" class="w-full bg-white border border-[#DDD7CC] rounded-xl px-3 py-2 text-xs text-[#163827] focus:outline-none focus:border-[#163827]">
+        </div>
+
+        <div class="space-y-1">
+          <label class="text-[11px] font-semibold text-[#163827]">Category</label>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium bg-[#163827] text-[#FAF8F5]">🍽️ Food</span>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium bg-[#EFECE4] text-[#3D4D43]">🛒 Groceries</span>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium bg-[#EFECE4] text-[#3D4D43]">🚗 Travel</span>
+            <span class="px-2.5 py-1 rounded-lg text-[10px] font-medium bg-[#EFECE4] text-[#3D4D43]">⚡ Bills</span>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button onclick="setView('dashboard')" class="w-full py-2.5 rounded-xl bg-[#163827] text-[#FAF8F5] font-semibold text-xs hover:bg-[#112D1F] shadow-sm">
+            Save Cash Expense
+          </button>
+        </div>
+      </div>
+
+      <!-- VIEW 4: EXPORT STATEMENT -->
+      <div id="view-export" class="hidden flex-1 flex flex-col bg-[#FAF8F5] p-4 space-y-3.5 overflow-y-auto">
+        <div class="w-10 h-1 bg-[#D8D2C5] rounded-full mx-auto my-1"></div>
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-sm font-bold text-[#163827] serif-title">Export Statement</h2>
+            <p class="text-[10px] text-[#6B7C72]">November 2026</p>
+          </div>
+          <button onclick="setView('dashboard')" class="w-6 h-6 rounded-full bg-[#EFECE4] text-[#163827] flex items-center justify-center text-xs">✕</button>
+        </div>
+
+        <p class="text-[11px] text-[#4A5D52] leading-relaxed">
+          Generate an itemized statement for your records or sharing directly via WhatsApp / Drive.
+        </p>
+
+        <!-- PDF Card -->
+        <div class="bg-white border border-[#EAE5DC] p-3.5 rounded-2xl space-y-2 shadow-sm">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-[#EAF2ED] text-[#163827] flex items-center justify-center text-sm font-bold">
+              PDF
+            </div>
+            <div>
+              <h3 class="text-xs font-bold text-[#163827]">Printable PDF Statement</h3>
+              <p class="text-[10px] text-[#6B7C72]">Summary header, category breakdown & itemized ledger</p>
+            </div>
+          </div>
+          <button onclick="alert('PDF Generated & Shared via FileProvider!')" class="w-full mt-2 py-2 rounded-xl bg-[#163827] hover:bg-[#112D1F] text-[#FAF8F5] text-xs font-semibold shadow-sm">
+            Export & Share PDF
+          </button>
+        </div>
+
+        <!-- CSV Card -->
+        <div class="bg-white border border-[#EAE5DC] p-3.5 rounded-2xl space-y-2 shadow-sm">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-[#F0EDE5] text-[#163827] flex items-center justify-center text-sm font-bold">
+              CSV
+            </div>
+            <div>
+              <h3 class="text-xs font-bold text-[#163827]">Spreadsheet CSV File</h3>
+              <p class="text-[10px] text-[#6B7C72]">For Microsoft Excel, Google Sheets, or CA filing</p>
+            </div>
+          </div>
+          <button onclick="alert('CSV Generated & Shared via FileProvider!')" class="w-full mt-2 py-2 rounded-xl bg-[#EFECE4] hover:bg-[#E5E0D5] text-[#163827] text-xs font-semibold border border-[#DDD7CC]">
+            Export .CSV File
+          </button>
+        </div>
+
+        <button onclick="setView('dashboard')" class="w-full py-2 text-[#6B7C72] text-xs hover:text-[#163827]">
+          Cancel
+        </button>
+      </div>
+
+      <!-- Floating Action Button (FAB) in Deep Dark Forest Green -->
+      <button id="fab" onclick="setView('add')" class="absolute bottom-5 right-5 w-12 h-12 rounded-full bg-[#163827] hover:bg-[#112D1F] text-[#FAF8F5] flex items-center justify-center shadow-lg text-lg font-light transition-transform active:scale-95 border border-[#2D543F] z-30">
+        +
+      </button>
+
+      <!-- Bottom Pill Indicator -->
+      <div class="w-24 h-1 bg-[#D3CDC1] rounded-full mx-auto my-1.5 z-20"></div>
+
+    </div>
+  </div>
+
+  <p class="text-[11px] text-[#86998E] mt-3">Double-click preview.html in your folder to test this anytime in any web browser!</p>
+
+  <script>
+    function triggerScanSimulation() {
+      alert("Simulated: Scanned HDFC SMS inbox for current month and imported transactions with zero duplicates!");
+    }
+
+    function setView(viewName) {
+      document.getElementById('view-dashboard').classList.add('hidden');
+      document.getElementById('view-edit').classList.add('hidden');
+      document.getElementById('view-add').classList.add('hidden');
+      document.getElementById('view-export').classList.add('hidden');
+      document.getElementById('fab').classList.add('hidden');
+
+      document.getElementById('btn-dashboard').className = 'px-4 py-1.5 rounded-xl font-medium transition-all text-[#8E9F94] hover:text-[#F7F5F0]';
+      document.getElementById('btn-edit').className = 'px-4 py-1.5 rounded-xl font-medium transition-all text-[#8E9F94] hover:text-[#F7F5F0]';
+      document.getElementById('btn-add').className = 'px-4 py-1.5 rounded-xl font-medium transition-all text-[#8E9F94] hover:text-[#F7F5F0]';
+      document.getElementById('btn-export').className = 'px-4 py-1.5 rounded-xl font-medium transition-all text-[#8E9F94] hover:text-[#F7F5F0]';
+
+      if (viewName === 'dashboard') {
+        document.getElementById('view-dashboard').classList.remove('hidden');
+        document.getElementById('fab').classList.remove('hidden');
+        document.getElementById('btn-dashboard').className = 'px-4 py-1.5 rounded-xl font-medium transition-all bg-[#2D5841] text-[#F7F5F0] shadow-sm';
+      } else if (viewName === 'edit') {
+        document.getElementById('view-edit').classList.remove('hidden');
+        document.getElementById('btn-edit').className = 'px-4 py-1.5 rounded-xl font-medium transition-all bg-[#2D5841] text-[#F7F5F0] shadow-sm';
+      } else if (viewName === 'add') {
+        document.getElementById('view-add').classList.remove('hidden');
+        document.getElementById('btn-add').className = 'px-4 py-1.5 rounded-xl font-medium transition-all bg-[#2D5841] text-[#F7F5F0] shadow-sm';
+      } else if (viewName === 'export') {
+        document.getElementById('view-export').classList.remove('hidden');
+        document.getElementById('btn-export').className = 'px-4 py-1.5 rounded-xl font-medium transition-all bg-[#2D5841] text-[#F7F5F0] shadow-sm';
+      }
+    }
+  </script>
+</body>
+</html>
+
