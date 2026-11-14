@@ -25,13 +25,13 @@
 You can install Hisabh directly onto your Android phone:
 
 ### 🔗 Direct APK Download Links:
-* 📦 **[Download Latest APK (Release)](https://github.com/yugvilassurana/hisabh/releases/latest/download/app-release.apk)** *(Recommended)*
-* 🛠️ **[Download Debug APK](https://github.com/yugvilassurana/hisabh/releases/latest/download/app-debug.apk)**
+* 📦 **[Download Latest APK (Release)](https://github.com/YugSurana/hisabh/releases/latest/download/app-release.apk)** *(Recommended)*
+* 🛠️ **[Download Debug APK](https://github.com/YugSurana/hisabh/releases/latest/download/app-debug.apk)**
 
-> **Tip:** You can also download the latest APK directly from the **[GitHub Releases](https://github.com/yugvilassurana/hisabh/releases)** tab on the right side of this repository.
+> **Tip:** You can also download the latest APK directly from the **[GitHub Releases](https://github.com/YugSurana/hisabh/releases)** tab on the right side of this repository.
 
 ### 📲 How to Install on Your Android Phone:
-1. Tap the **[Download Latest APK](https://github.com/yugvilassurana/hisabh/releases/latest/download/app-release.apk)** link from your phone's browser.
+1. Tap the **[Download Latest APK](https://github.com/YugSurana/hisabh/releases/latest/download/app-release.apk)** link from your phone's browser.
 2. When the download finishes, tap **Open**.
 3. If Android prompts *"For your security, your phone is not allowed to install unknown apps from this source"*, tap **Settings** and toggle **"Allow from this source"**.
 4. Tap **Install**, then tap **Open**!
@@ -135,7 +135,7 @@ hisabh/
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yugvilassurana/hisabh.git
+   git clone https://github.com/YugSurana/hisabh.git
    ```
 2. Open **Android Studio** (Hedgehog or Ladybug).
 3. Select **File > Open** and select the `hisabh` folder.
