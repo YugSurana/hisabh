@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <a href="#-download-the-app">
-    <img src="https://img.shields.io/badge/Download-APK-163827?style=for-the-badge&logo=android&logoColor=white" alt="Download APK" />
+  <a href="https://github.com/YugSurana/hisabh/releases/latest/download/app-debug.apk">
+    <img src="https://img.shields.io/badge/Download-APK%20(v1.0.0)-163827?style=for-the-badge&logo=android&logoColor=white" alt="Download APK" />
   </a>
   <img src="https://img.shields.io/badge/Platform-Android%208.0%2B-blue?style=for-the-badge&logo=android" alt="Android 8.0+" />
   <img src="https://img.shields.io/badge/Privacy-100%25%20Offline-success?style=for-the-badge&logo=shield" alt="100% Offline" />
@@ -24,14 +24,13 @@
 
 You can install Hisabh directly onto your Android phone:
 
-### 🔗 Direct APK Download Links:
-* 📦 **[Download Latest APK (Release)](https://github.com/YugSurana/hisabh/releases/latest/download/app-release.apk)** *(Recommended)*
-* 🛠️ **[Download Debug APK](https://github.com/YugSurana/hisabh/releases/latest/download/app-debug.apk)**
+### 🔗 Direct APK Download:
+* 📦 **[Download Hisabh APK (v1.0.0)](https://github.com/YugSurana/hisabh/releases/latest/download/app-debug.apk)** *(Ready to install)*
 
-> **Tip:** You can also download the latest APK directly from the **[GitHub Releases](https://github.com/YugSurana/hisabh/releases)** tab on the right side of this repository.
+> **Tip:** You can also browse all versions directly from the **[GitHub Releases](https://github.com/YugSurana/hisabh/releases)** page.
 
 ### 📲 How to Install on Your Android Phone:
-1. Tap the **[Download Latest APK](https://github.com/YugSurana/hisabh/releases/latest/download/app-release.apk)** link from your phone's browser.
+1. Tap the **[Download Hisabh APK](https://github.com/YugSurana/hisabh/releases/latest/download/app-debug.apk)** link from your phone's browser.
 2. When the download finishes, tap **Open**.
 3. If Android prompts *"For your security, your phone is not allowed to install unknown apps from this source"*, tap **Settings** and toggle **"Allow from this source"**.
 4. Tap **Install**, then tap **Open**!
